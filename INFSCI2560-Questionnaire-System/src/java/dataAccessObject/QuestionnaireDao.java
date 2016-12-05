@@ -29,6 +29,7 @@ public class QuestionnaireDao {
     private Connection connection;
     private String nonceval = "";
     Statement st = null;
+    PreparedStatement ps = null;
     ResultSet rs = null;
 
     String sql = "";
@@ -42,41 +43,60 @@ public class QuestionnaireDao {
     }
 
 
+    public int WriteQuestionnaireToDB(String title) {
+        PreparedStatement ps;
+        try {
+            String sql = "INSERT INTO INFSCI2560.questionnaire (QuestionnaireTitle) vaules (?)";
 
-    public List<QuestionnaireModel> GetQuestonnaireListFromLogDB() {
+            ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, title);
+            ps.executeUpdate();
+            
+            ResultSet rs = ps.getGeneratedKeys();
+            if(rs.next())
+                return autoKey=rs.getInt(1);
+            else
+                return 0;
 
-        List<QuestionnaireModel> QuestionnaireList = new ArrayList<QuestionnaireModel>();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage()) ;
+            return -1;
+        }
+    }
 
-        Connection connection;
-        PreparedStatement preparedStatement;
+    public String getQuestionnaireTitleFromID(int questionnaireID) {
+        PreparedStatement ps;
 
 
         try {
             connection = DbConnection.getConnection();
 
-            String sql = "SELECT * FROM infsci2560'";
+            String sql = "SELECT QuestionnaireTitle FROM INFSCI2560.questionnaire where id = ?";
 
-            preparedStatement = connection.prepareStatement(sql);
-            //here should have 3 variables to distinguish where are the entry from( security question, login ,reset password....)
-//            String SysSource = "[hostile]";
-//            preparedStatement.setString(1, SysSource);
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, questionnaireID);
 
-            ResultSet rs = preparedStatement.executeQuery();
-
-            if (!rs.next()) {
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getString("QuestionnaireTitle");
+            }else
                 return null;
-            } else {
-                while (true) {     
-                    
-                    if(!rs.next())
-                    {
-                        break;
-                    }
 
-                }
-            }
+//            if (!rs.next()) {
+//                return null;
+//            } else {
+//                while (true) {     
+//                    
+//                    if(!rs.next())
+//                    {
+//                        break;
+//                    }
+//
+//                }
+//            }
 
-            return QuestionnaireList;
+//            return QuestionnaireList;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,26 +104,4 @@ public class QuestionnaireDao {
         }
     }
 
-    public int WriteQuestionnaireToDB() {
-        Connection connection;
-        PreparedStatement preparedStatement;
-
-     
-
-        try {
-            connection = DbConnection.getConnection();
-
-            String sql = "  ";
-
-            preparedStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-        
-            preparedStatement.executeUpdate();
-
-            return 0;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
 }

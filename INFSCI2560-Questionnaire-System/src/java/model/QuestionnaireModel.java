@@ -11,14 +11,28 @@ package model;
  * @author Zhirun Tian
  */
 public class QuestionnaireModel {
+    private int ID;
     private String Title;
-    private ArrayList<String> 
 
-
-    public String SYSTEM_SOURCE;
 
     public QuestionnaireModel() {
 
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTitle(String Title) {
+        this.Title = Title;
     }
     
 
