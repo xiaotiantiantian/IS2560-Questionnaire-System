@@ -12,6 +12,7 @@ package model;
 public class QuestionAndSelection {
     private int QuestionnaireID;
     private int QuestionID;
+    private String QuestionContent;
     private String Selection1;
     private String Selection2;
     private String Selection3;
@@ -21,15 +22,18 @@ public class QuestionAndSelection {
     public QuestionAndSelection() {
     }
 
-    public QuestionAndSelection(int QuestionnaireID, int QuestionID, String Selection1, String Selection2, String Selection3, String Selection4, String Selection5) {
+    public QuestionAndSelection(int QuestionnaireID, int QuestionID, String QuestionContent, String Selection1, String Selection2, String Selection3, String Selection4, String Selection5) {
         this.QuestionnaireID = QuestionnaireID;
         this.QuestionID = QuestionID;
+        this.QuestionContent = QuestionContent;
         this.Selection1 = Selection1;
         this.Selection2 = Selection2;
         this.Selection3 = Selection3;
         this.Selection4 = Selection4;
         this.Selection5 = Selection5;
     }
+    
+    
 
     public int getQuestionnaireID() {
         return QuestionnaireID;
@@ -45,6 +49,14 @@ public class QuestionAndSelection {
 
     public void setQuestionID(int QuestionID) {
         this.QuestionID = QuestionID;
+    }
+
+    public String getQuestionContent() {
+        return QuestionContent;
+    }
+
+    public void setQuestionContent(String QuestionContent) {
+        this.QuestionContent = QuestionContent;
     }
 
     public String getSelection1() {

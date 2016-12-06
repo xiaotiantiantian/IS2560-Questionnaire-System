@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+ 
+    <servlet>
+        <servlet-name>HandleShowQuestionnaire</servlet-name>
+        <servlet-class> controller.handleShow.HandleShowQuestionnaire</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HandleShowQuestionnaire</servlet-name>
+        <url-pattern>/readQuestionnaire</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Questionnaire</servlet-name>
+        <servlet-class>controller.Questionnaire</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Questionnaire</servlet-name>
+        <url-pattern>/editQuestionnaire</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>controller.LogOut</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/LogOut</url-pattern>
+    </servlet-mapping>
+    
+    
+    <session-config>
+        <session-timeout>120</session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>
+            login.jsp
+        </welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <servlet-name>error</servlet-name>
+        <jsp-file>/error.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>error</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+    <error-page>
+        <error-code>404</error-code> 
+        <location>/error</location>
+    </error-page>
+</web-app>

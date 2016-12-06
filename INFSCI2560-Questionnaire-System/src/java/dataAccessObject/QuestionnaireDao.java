@@ -35,8 +35,6 @@ public class QuestionnaireDao {
     String sql = "";
     int autoKey = 0;
 
-    private QuestionnaireModel qModel;
-
     public QuestionnaireDao() {
         //connect to database and select the record
         connection = DbConnection.getConnection();
@@ -44,7 +42,7 @@ public class QuestionnaireDao {
 
 
     public int WriteQuestionnaireToDB(String title) {
-        PreparedStatement ps;
+//        PreparedStatement ps;
         try {
             String sql = "INSERT INTO INFSCI2560.questionnaire (QuestionnaireTitle) vaules (?)";
 
@@ -62,7 +60,7 @@ public class QuestionnaireDao {
             e.printStackTrace();
             System.out.println(e.getMessage()) ;
             return -1;
-        }
+        }  
     }
 
     public String getQuestionnaireTitleFromID(int questionnaireID) {
