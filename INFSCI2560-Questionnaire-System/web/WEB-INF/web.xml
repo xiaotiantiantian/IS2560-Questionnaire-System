@@ -9,6 +9,14 @@
         <servlet-name>HandleShowQuestionnaire</servlet-name>
         <url-pattern>/readQuestionnaire</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FillQuestionnaire</servlet-name>
+        <servlet-class> controller.fillQuestionnaire.FillQuestionnaire</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FillQuestionnaire</servlet-name>
+        <url-pattern>/FillQuestionnaire</url-pattern>
+    </servlet-mapping>
     
     <servlet>
         <servlet-name>Questionnaire</servlet-name>
