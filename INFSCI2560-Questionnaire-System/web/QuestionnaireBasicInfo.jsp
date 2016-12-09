@@ -21,6 +21,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,6 +29,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     </head>
+    <!--<script src="js/formQuestionnaireEditAdd.js?ver=2" type="text/javascript"></script>-->
     <body>
 
         <!-- Fixed navbar -->
@@ -72,10 +74,37 @@
                 <h1>Edit Questionnaire</h1>
             </div>
 
+            <!-- some script about add question and selecton-->
+            <script language="javascript">
+                var count = 0;
+                var maxSelection = 5;
+//                增加元素
+                function addSelection() {
+                    alert('cssxss');
+                    if (count >= maxSelection)
+                        return;//限制最多maxSelection个文件框
+                    count++;
+//自增id不同的HTML对象，并附加到容器最后
+                    var newDiv = "<div class=\"form-group\" id=selection" + count + ">"
+                            + "<label for=\"questionnaireSel"+count+">Question "+count+"</label>"
+                            + " <input name=\"questionnaireSel"+count+" id=\"questionnaireSel"+count +" type=\"text\" class=\"form-control\"  placeholder=\"input text here\" maxlength=\"254\"  required>"
+                            + " <a href=javascript:delUpload('selection" + count + "');>delet</a>"
+                            + " </div>";
+                    document.getElementById("Questionnaire").insertAdjacentHTML("beforeEnd", newDiv);
+                }
+//删除指定元素
+                function delUpload(diva) {
+                    count--;
+                    document.getElementById(diva).parentNode.removeChild(document.getElementById(diva));
+                }
+            </script>
             <!--management area-->
             <div class="ManagementArea" style="margin-top:30px">
 
-                <form  action="Questionnaire" method="post">
+                <h2 id="questionNumber">Question number is:</h2>
+
+                <!--<script>addQuestion();</script>-->
+                <form id="Questionnaire" action="Questionnaire" method="post">
                     <div class="form-group">
                         <label for="questionnaireTitle">Questionnaire Title</label>
                         <input name="questionnaireTitle" id="questionnaireTitle" type="text" class="form-control"  placeholder="input a title here" maxlength="254"  required>
@@ -84,7 +113,7 @@
                         <label for="questionnaireQ1">Question 1</label>
                         <input name="questionnaireQ1" id="questionnaireQ1" type="text" class="form-control"  placeholder="input text here" maxlength="254"  required>
                     </div>
-                    
+
 
                     <!--                    <select name="roleChoice" class="form-control">
                                             <option value="1">User</option>
@@ -92,7 +121,9 @@
                                         </select>-->
 
                     <button type="submit" class="btn btn-default">Submit</button>
-                    <button type="button" id="addSelection" class="btn btn-default" onclick = "alert('test');">Add Selection</button>
+                    <button type="button" id="addSelection0" class="btn btn-default" onclick = "addSelection();">Add Selection</button>
+                     <!--<button onclick="addSelection();">Add Selection</button>--> 
+                     
                 </form>
                 <div class="message">
                     <!--show message when change role successfully-->
@@ -119,10 +150,9 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
-        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="js/formCheck.js" type="text/javascript"></script>
-
+        <!--<script src="js/formQuestionnaireEditAdd.js?ver=2" type="text/javascript"></script>-->
     </body>
 </html>
 
