@@ -40,7 +40,8 @@
                     <ul class="nav navbar-nav">
                         <li><a href="loginsuccess.jsp">Home</a></li>
                         <li><a href="QuestionnaireBasicInfo.jsp">Edit Questionnaire</a></li>
-                        <li><a href="something.jsp">Page</a></li>
+                        <li><a href="showCreatedQuestionnaire.jsp">Show My Questionnaire</a></li>
+                        <li><a href="Search.jsp">Search Questionnaire</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Personal Information <b class="caret"></b>
