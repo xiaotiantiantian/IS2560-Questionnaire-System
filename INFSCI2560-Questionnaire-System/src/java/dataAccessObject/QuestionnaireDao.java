@@ -62,6 +62,28 @@ public class QuestionnaireDao {
             return -1;
         }  
     }
+    
+    public int writeQuestionnaireAutherToDB(int questionnaireID, int userID){
+         try {
+            String sql = "INSERT INTO INFSCI2560.user_questionnaire (UserID, QuestionnaireID) values (?,?)";
+
+//            ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, userID);
+            ps.setInt(2, questionnaireID);
+            ps.executeUpdate();
+            
+//            ResultSet rs = ps.getGeneratedKeys();
+//            if(rs.next())
+//                return autoKey=rs.getInt(1);
+//            else
+                return 1;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage()) ;
+            return -1;
+        }  
+    }
 
     public String getQuestionnaireTitleFromID(int questionnaireID) {
         PreparedStatement ps;

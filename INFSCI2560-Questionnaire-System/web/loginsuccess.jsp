@@ -20,11 +20,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>test3</title>
+        <title>Dashboard</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     </head>
+    <!--<script src="js/formQuestionnaireEditAdd.js?ver=2" type="text/javascript"></script>-->
     <body>
+
+        <!-- Fixed navbar -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -68,17 +71,34 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
+
+
+        <!-- Begin page content -->
+        <div class="container" style="margin-top:100px;margin-bottom:250px;">
+
+            <div class="page-header">
+                <h1>Dashboard</h1>
+            </div>
         <div class="page-header">
-            <h1>Role Management</h1>
-            <a href='changepsw.jsp'>change password</a>
-            <a href='changeuserinfo.jsp'>change user information</a>
+            <p><a href='changepsw.jsp'>change password</a></p>
+            <p><a href='changeuserinfo.jsp'>change user information</a></p>
         </div>
+
+          </div><!--container-->
+
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">&copy; 2016 Web Technology and Standard &middot; <a href="#">Privacy</a>
+                    &middot; <a href="#">Terms</a></p>
+            </div>
+        </footer>
+
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
-        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="js/formCheck.js" type="text/javascript"></script>
+        <!--<script src="js/formQuestionnaireEditAdd.js?ver=2" type="text/javascript"></script>-->
     </body>
 </html>

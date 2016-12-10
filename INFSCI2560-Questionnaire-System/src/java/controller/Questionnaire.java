@@ -72,45 +72,57 @@ public class Questionnaire extends HttpServlet {
         String questionSel4 = "null";
         String questionSel5 = "null";
         String type = "";
-        
+        //wirte questionnaireTitle to questonnaire table
         QuestionnaireDao questionnaireDao = new QuestionnaireDao();
         int questionnaireID = questionnaireDao.WriteQuestionnaireToDB(questionnaireTitle);
+        //write questionnaireID and userID to user_questionnaire table
+        int userID = (int) session.getAttribute("userID");
+        if (questionnaireDao.writeQuestionnaireAutherToDB(questionnaireID, userID) != 1) {
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Unsuccessful insert user_questionnaire</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Unsuccessful insert user_questionnaire</h1>");
+                out.println("</body>");
+                out.println("</html>");
+
+            }
+        }
+
         QuestionDao questionDao = new QuestionDao();
 //        QuestionAndSelection questionAndSelection = new QuestionAndSelection();
         List<QuestionAndSelection> qsList = new ArrayList<QuestionAndSelection>();
-        
-        for(int i = 1; request.getParameter("questionnaireQ"+i)!= null; i++){
-            type = (String) request.getParameter("question-type"+i);
-            questionTitle = (String) request.getParameter("questionnaireQ"+i);
-            if (request.getParameter("questionnaireQ"+i+"Sel1") != null) {
-                questionSel1 = (String) request.getParameter("questionnaireQ"+i+"Sel1");
+
+        for (int i = 1; request.getParameter("questionnaireQ" + i) != null; i++) {
+            type = (String) request.getParameter("question-type" + i);
+            questionTitle = (String) request.getParameter("questionnaireQ" + i);
+            if (request.getParameter("questionnaireQ" + i + "Sel1") != null) {
+                questionSel1 = (String) request.getParameter("questionnaireQ" + i + "Sel1");
             }
-            if (request.getParameter("questionnaireQ"+i+"Sel2") != null) {
-                questionSel2 = (String) request.getParameter("questionnaireQ"+i+"Sel2");
+            if (request.getParameter("questionnaireQ" + i + "Sel2") != null) {
+                questionSel2 = (String) request.getParameter("questionnaireQ" + i + "Sel2");
             }
-            if (request.getParameter("questionnaireQ"+i+"Sel3") != null) {
-                questionSel3 = (String) request.getParameter("questionnaireQ"+i+"Sel3");
+            if (request.getParameter("questionnaireQ" + i + "Sel3") != null) {
+                questionSel3 = (String) request.getParameter("questionnaireQ" + i + "Sel3");
             }
-            if (request.getParameter("questionnaireQ"+i+"Sel4") != null) {
-                questionSel4 = (String) request.getParameter("questionnaireQ"+i+"Sel4");
+            if (request.getParameter("questionnaireQ" + i + "Sel4") != null) {
+                questionSel4 = (String) request.getParameter("questionnaireQ" + i + "Sel4");
             }
-            if (request.getParameter("questionnaireQ"+i+"Sel5") != null) {
-                questionSel5 = (String) request.getParameter("questionnaireQ"+i+"Sel5");
+            if (request.getParameter("questionnaireQ" + i + "Sel5") != null) {
+                questionSel5 = (String) request.getParameter("questionnaireQ" + i + "Sel5");
             }
-             QuestionAndSelection qs = new QuestionAndSelection(questionnaireID, questionTitle,questionSel1, questionSel2, questionSel3, questionSel4, questionSel5,type );
-             qsList.add(qs);
+            QuestionAndSelection qs = new QuestionAndSelection(questionnaireID, questionTitle, questionSel1, questionSel2, questionSel3, questionSel4, questionSel5, type);
+            qsList.add(qs);
         }
-        
-         for(QuestionAndSelection qs:qsList){
-                 questionDao.WriteQuestionAndSelectionToDB(qs);
+
+        for (QuestionAndSelection qs : qsList) {
+            questionDao.WriteQuestionAndSelectionToDB(qs);
 
         }
-        
 
-        
-       
-        
-       
         response.sendRedirect("index.html");
 
     }
