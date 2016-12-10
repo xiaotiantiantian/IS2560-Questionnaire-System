@@ -84,11 +84,25 @@
                 String userID = Integer.toString((int) session.getAttribute("userID"));
 
             %>
-            <form action='' method='post'>
-                <p>(杜啸)输入调查表的关键字: </p>
-                <input type='text' name='keyword'>
-                <br><input type='submit' value='提交' name='submit'>
+ 
+            <form action="" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="keyword" id="username" class="col-sm-2 control-label">Search by Key Words</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="keyword" name="keyword" placeholder="please input the keyword">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </div>
+                </div>
             </form>
+
+
+
+
             <jsp:setProperty name="vagueSearch" property="userID" value="<%= userID%>"/>
             <jsp:setProperty name="vagueSearch" property="keyword"/>
             <jsp:getProperty name="vagueSearch" property="result"/>

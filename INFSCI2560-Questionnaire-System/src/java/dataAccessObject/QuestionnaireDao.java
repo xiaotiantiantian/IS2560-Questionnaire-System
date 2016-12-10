@@ -68,9 +68,10 @@ public class QuestionnaireDao {
             String sql = "INSERT INTO INFSCI2560.user_questionnaire (UserID, QuestionnaireID) values (?,?)";
 
 //            ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, userID);
-            ps.setInt(2, questionnaireID);
-            ps.executeUpdate();
+//            ps.setInt(1, userID);
+//            ps.setInt(2, questionnaireID);
+//            ps.executeUpdate();
+                ps.executeUpdate("INSERT INTO INFSCI2560.user_questionnaire values (\""+userID+"\",\""+questionnaireID+"\")"  );
             
 //            ResultSet rs = ps.getGeneratedKeys();
 //            if(rs.next())

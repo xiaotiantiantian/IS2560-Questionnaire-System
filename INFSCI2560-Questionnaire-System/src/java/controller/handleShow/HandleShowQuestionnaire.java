@@ -23,16 +23,17 @@ import model.showQuestionnaire.*;
  */
 //@WebServlet(name = "HandleShowQuestionnaire", urlPatterns = {"/HandleShowQuestionnaire"})
 public class HandleShowQuestionnaire extends HttpServlet {
-    public void init(ServletConfig config) throws ServletException{
+
+    public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        try{
+        try {
             Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception e) {
         }
-        catch(Exception e){}
     }
-    
-    public void doPost(HttpServletRequest request,HttpServletResponse response)
-            throws ServletException,IOException{
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String questionnaireID = request.getParameter("questionnaireID");
         Connection con;
         Statement sql;
@@ -40,50 +41,59 @@ public class HandleShowQuestionnaire extends HttpServlet {
         QuestionnaireContent qc = new QuestionnaireContent();
         request.setAttribute("questionnaireContent", qc);
         StringBuffer result = new StringBuffer();
-        try{
-            String uri="jdbc:mysql://localhost:3306/infsci2560?"+
-                        "user=root&password=root&characterEncoding=gb2312";
+        try {
+            String uri = "jdbc:mysql://localhost:3306/infsci2560?"
+                    + "user=root&password=root&characterEncoding=gb2312";
             con = DriverManager.getConnection(uri);
             sql = con.createStatement();
-            rs = sql.executeQuery("SELECT * FROM questionnaire WHERE QuestionnaireID="+questionnaireID);
-            if(rs.next())
+            rs = sql.executeQuery("SELECT * FROM questionnaire WHERE QuestionnaireID=" + questionnaireID);
+            if (rs.next()) {
                 qc.setQuestionnaireTitle(rs.getString("QuestionnaireTitle"));
-            rs = sql.executeQuery("SELECT * FROM question WHERE QuestionnaireID="+questionnaireID);
-            int i=1;
-            while(rs.next()){
-                result.append("<h2>"+rs.getString("QuestionContent")+"</h2>");
-                result.append("<input type=\"hidden\" name=\"question"+i+"\" value=\""+rs.getString(2)+"\" />");
+            }
+            rs = sql.executeQuery("SELECT * FROM question WHERE QuestionnaireID=" + questionnaireID);
+            int i = 1;
+            while (rs.next()) {
+                result.append("<div class=\"page-header\">\n"
+                        + "<h2>"
+                        + rs.getString("QuestionContent")
+                        + "</h2>\n"
+                        + "</div>");
+                result.append("<input type=\"hidden\" name=\"question" + i + "\" value=\"" + rs.getString(2) + "\" />");
                 result.append("<p>");
-                for(int j=4;j<=8;j++){
-                    if(!rs.getString(j).equals("null")){
-                        if(rs.getString("Type").equals("M")){
-                            result.append("<input type=\"checkbox\" id=\"q"+i+"\" name=\"questionResult"+i+"\" value=\""+(j-3)+"\" />");
-                            result.append("<label for=\"q"+i+"\" >");
-                            result.append(rs.getString(j)+"  ");
+                for (int j = 4; j <= 8; j++) {
+                    if (!rs.getString(j).equals("null")) {
+                        if (rs.getString("Type").equals("M")) {
+                            result.append("<div class=\"c-inputs-stacked\">\n"
+                                    + "  <label class=\"c-input c-radio\">");
+                            result.append("<input type=\"checkbox\" id=\"q" + i + "\" name=\"questionResult" + i + "\" value=\"" + (j - 3) + "\" />");
+                            result.append("<label for=\"q" + i + "\" >");
+                            result.append(rs.getString(j) + "  ");
                             result.append("</label>");
-                        }
-                        else{
-                            result.append("<input type=\"radio\" id=\"q"+i+"\" name=\"questionResult"+i+"\" value=\""+(j-3)+"\" />");
-                            result.append("<label for=\"q"+i+"\" >");
-                            result.append(rs.getString(j)+"  ");
+                            
+                            
+                        } else {
+                            result.append("<input type=\"radio\" id=\"q" + i + "\" name=\"questionResult" + i + "\" value=\"" + (j - 3) + "\" />");
+                            result.append("<label for=\"q" + i + "\" >");
+                            result.append(rs.getString(j) + "  ");
                             result.append("</label>");
                         }
                     }
                 }
                 result.append("</p>");
                 i++;
-            } 
+            }
+
             qc.setResult(result);
             con.close();
             RequestDispatcher dispatcher = request.getRequestDispatcher("show.jsp");
             dispatcher.forward(request, response);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             out.println(e);
         }
     }
-     public void doGet(HttpServletRequest request,HttpServletResponse response)
-            throws ServletException,IOException{
-         doPost(request,response);
-     }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
 }

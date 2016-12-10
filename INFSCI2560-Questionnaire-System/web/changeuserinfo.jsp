@@ -78,7 +78,7 @@
                 <h1>Change User Information</h1>
             </div>
 
-                        <form action="changeuserinfo" method="post">
+<!--                        <form action="changeuserinfo" method="post">
                             username:<input type="text" name="username"><br>            
                             <legend>gender:</legend>
                             <p class="row">
@@ -94,9 +94,9 @@
                                 <label for="gender-others">Others</label>
                             </p>
                             <input type="submit">
-                        </form>
+                        </form>-->
 
-<!--            <form action="changeuserinfo" class="form-horizontal" role="form">
+            <form action="changeuserinfo" class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="username" id="username" class="col-sm-2 control-label">User name</label>
                     <div class="col-sm-10">
@@ -104,9 +104,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="gender" id="gender" class="col-sm-2 control-label">Gender</label>
+                    <label for="gender" class="col-sm-2 control-label">Gender</label>
                     <div class="col-sm-10">
-                    <select class="form-control">
+                    <select  id="gender" name="gender" class="form-control">
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="others">Others</option>
@@ -118,7 +118,7 @@
                         <button type="submit" class="btn btn-default">Modify</button>
                     </div>
                 </div>
-            </form>-->
+            </form>
 
 
 

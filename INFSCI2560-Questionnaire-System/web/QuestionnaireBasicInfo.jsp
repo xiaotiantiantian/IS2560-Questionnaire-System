@@ -144,10 +144,10 @@
                         <label for="questionnaireQ1"><h3>Question 1</h3></label>
                         <input name="questionnaireQ1" id="questionnaireQ1" type="text" class="form-control"  placeholder="input text here" maxlength="254"  required>
                         <label for="sel1">Select list:</label>
-                        <select class="form-control" id="questiont-type1">
-                            <option name="question-type1" value="S">Single Selection Question</option>
-                            <option name="question-type1" value="M">Multiple Selection Question</option>
-                            <option name="question-type1" value="F">Fill in Blank Question</option>
+                        <select class="form-control" name="question-type1" id="questiont-type1">
+                            <option value="S">Single Selection Question</option>
+                            <option value="M">Multiple Selection Question</option>
+                            <option value="F">Fill in Blank Question</option>
                         </select>
                         <!--                        <p class="row">
                                                     <input type="radio" id="question-type-single" name="question-type1" value="S"/>

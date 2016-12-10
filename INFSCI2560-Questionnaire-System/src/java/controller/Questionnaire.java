@@ -123,7 +123,7 @@ public class Questionnaire extends HttpServlet {
 
         }
 
-        response.sendRedirect("index.html");
+        response.sendRedirect("loginsuccess.jsp");
 
     }
 
