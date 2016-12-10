@@ -34,16 +34,25 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">IS2731</a>
+                    <a class="navbar-brand" href="#">IS2560</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.jsp">Home</a></li>
-                        <li><a href="hostilelist.jsp">Hostile</a></li>
-                        <li><a href="activitylog.jsp">Activity Log</a></li>
-                        <li class="active"><a href="roleManage.jsp">Role Management</a></li>
-                        <li><a href="admin.jsp">Admin Page</a></li>
-                        <li><a href="RBACtest.jsp">RBAC Test</a></li>
+                        <li class="active"><a href="loginsuccess.jsp">Home</a></li>
+                        <li><a href="QuestionnaireBasicInfo.jsp">Edit Questionnaire</a></li>
+                        <li><a href="showCreatedQuestionnaire.jsp">Show My Questionnaire</a></li>
+                        <li><a href="Search.jsp">Search Questionnaire</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Personal Information <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">View User Info</a></li>
+                                <li class="divider"></li>
+                                <li><a href="changepsw.jsp">Change Password</a></li>
+                                <li><a href="changeuserinfo.jsp">Change User Info</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!--put the name on the navigation bar-->
@@ -60,12 +69,12 @@
             </div>
         </nav>
         <div class="page-header">
-                <h1>Role Management</h1>
-                <a href='changepsw.jsp'>change password</a>
-                <a href='changeuserinfo.jsp'>change user information</a>
+            <h1>Role Management</h1>
+            <a href='changepsw.jsp'>change password</a>
+            <a href='changeuserinfo.jsp'>change user information</a>
         </div>
-        
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">

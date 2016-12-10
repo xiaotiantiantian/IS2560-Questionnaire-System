@@ -23,7 +23,11 @@
     </head>
     <body>
         <%
+            if(session.getAttribute("userID")!=null){
+                    System.out.println(Integer.toString((int)session.getAttribute("userID")));       
+            }
             String userID =Integer.toString((int)session.getAttribute("userID"));
+
             %>
         <form action='' method='post'>
             <p>(杜啸)输入调查表的关键字: </p>
