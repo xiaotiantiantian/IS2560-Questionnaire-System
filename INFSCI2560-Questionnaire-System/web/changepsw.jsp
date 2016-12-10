@@ -84,11 +84,38 @@
                     <title>JSP Page</title>
                 </head>
                 <body>-->
-            <form action="changepsw" method="post">
+<!--            <form action="changepsw" method="post">
                 password:<input type="password" name="pwd"><br>
                 new password:<input type="password" name="npwd"><br>
                 confirm new password:<input type="password" name="cnpwd"><br>
                 <input type="submit">
+            </form>-->
+            
+            
+            <form action="changepsw" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="pwd" class="col-sm-2 control-label">Enter Current Password</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="pwd" name="pwd" placeholder="please input current password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="npwd" class="col-sm-2 control-label">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter New Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="npwd" name="npwd" placeholder="please input the new password">
+                    </div>
+                </div>
+                                <div class="form-group">
+                    <label for="cnpwd" class="col-sm-2 control-label">Re-enter New Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="cnpwd" name="cnpwd" placeholder="please input the new password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Change Password</button>
+                    </div>
+                </div>
             </form>
             <!--    </body>
             </html>-->

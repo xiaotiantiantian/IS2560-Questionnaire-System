@@ -36,23 +36,26 @@ public class ShowSelectionResult {
     }
     public StringBuffer getResult(){
         Connection con;
-        Statement sql;
+        Statement sql1,sql2;
         ResultSet rs , rs2;
         try{
             String uri = "jdbc:mysql://localhost:3306/infsci2560?"+
                         "user=root&password=root&characterEncoding=gb2312";
             con = DriverManager.getConnection(uri);
-            sql = con.createStatement();
-            rs = sql.executeQuery("SELECT * FROM questionnaire WHERE QuestionnaireTitle LIKE '%"+keyword+"%'");
-            result.append(userID);
+            sql1 = con.createStatement();
+            sql2 = con.createStatement();
+            rs = sql1.executeQuery("SELECT * FROM questionnaire WHERE QuestionnaireTitle LIKE '%"+keyword+"%'");
+
             while(rs.next()){
-//                rs2=sql.executeQuery("SELECT * FROM question q, answer a where "
-//                                   + "q.QuestionID=a.QuestionID and  q.QuestionnaireID="+rs.getString("QuestionnaireID")+"and a.UserID="+userID);
-//                if(!rs2.first()){
+                rs2=sql2.executeQuery("SELECT * FROM infsci2560.question q, infsci2560.answer a where "
+                        + "q.QuestionID=a.QuestionID and  "
+                        + "q.QuestionnaireID="+rs.getString("QuestionnaireID")+" and "
+                        + "a.UserID="+userID);
+                if(!rs2.next()){
                     result.append("<p>");
                     result.append("<a href=\"readQuestionnaire?questionnaireID="+rs.getString("QuestionnaireID")+"\" >"+rs.getString("QuestionnaireTitle")+"</a>");
                     result.append("</p>");
-//                }
+                }
             }
         }
         catch(Exception e){}

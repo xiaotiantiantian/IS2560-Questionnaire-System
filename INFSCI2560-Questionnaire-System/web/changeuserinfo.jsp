@@ -78,23 +78,50 @@
                 <h1>Change User Information</h1>
             </div>
 
-            <form action="changeuserinfo" method="post">
-                username:<input type="text" name="username"><br>            
-                <legend>gender:</legend>
-                <p class="row">
-                    <input type="radio" id="gender-male" name="gender" value="male"/>
-                    <label for="gender-male">Male</label>
-                </p>
-                <p class="row">
-                    <input type="radio" id="gender-female" name="gender" value="female"/>
-                    <label for="gender-female">Female</label>
-                </p>
-                <p class="row">
-                    <input type="radio" id="gender-others" name="gender" value="others" checked/>
-                    <label for="gender-others">Others</label>
-                </p>
-                <input type="submit">
-            </form>
+                        <form action="changeuserinfo" method="post">
+                            username:<input type="text" name="username"><br>            
+                            <legend>gender:</legend>
+                            <p class="row">
+                                <input type="radio" id="gender-male" name="gender" value="male"/>
+                                <label for="gender-male">Male</label>
+                            </p>
+                            <p class="row">
+                                <input type="radio" id="gender-female" name="gender" value="female"/>
+                                <label for="gender-female">Female</label>
+                            </p>
+                            <p class="row">
+                                <input type="radio" id="gender-others" name="gender" value="others" checked/>
+                                <label for="gender-others">Others</label>
+                            </p>
+                            <input type="submit">
+                        </form>
+
+<!--            <form action="changeuserinfo" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="username" id="username" class="col-sm-2 control-label">User name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="please input the username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gender" id="gender" class="col-sm-2 control-label">Gender</label>
+                    <div class="col-sm-10">
+                    <select class="form-control">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="others">Others</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Modify</button>
+                    </div>
+                </div>
+            </form>-->
+
+
+
         </div><!--container-->
 
         <footer class="footer">

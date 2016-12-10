@@ -145,10 +145,9 @@
                         <input name="questionnaireQ1" id="questionnaireQ1" type="text" class="form-control"  placeholder="input text here" maxlength="254"  required>
                         <label for="sel1">Select list:</label>
                         <select class="form-control" id="questiont-type1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                            <option name="question-type1" value="S">Single Selection Question</option>
+                            <option name="question-type1" value="M">Multiple Selection Question</option>
+                            <option name="question-type1" value="F">Fill in Blank Question</option>
                         </select>
                         <!--                        <p class="row">
                                                     <input type="radio" id="question-type-single" name="question-type1" value="S"/>
