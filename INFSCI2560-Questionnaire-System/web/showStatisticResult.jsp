@@ -1,9 +1,8 @@
 <%-- 
-    Document   : show
-    Created on : Dec 5, 2016, 10:28:25 PM
+    Document   : showStatisticResult
+    Created on : Dec 9, 2016, 4:54:39 PM
     Author     : duxia
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.showQuestionnaire.QuestionnaireContent" %>
 <jsp:useBean id="questionnaireContent" type="model.showQuestionnaire.QuestionnaireContent" scope="request"/>
@@ -16,15 +15,11 @@
     }
 %>
 
-
-
 <html>
     <body>
         <h1><jsp:getProperty name="questionnaireContent" property="questionnaireTitle"/></h1>
-        <form action='FillQuestionnaire' method='post'>
-           <jsp:getProperty name="questionnaireContent" property="result"/>
-           <br><input type='submit' value='提交' name='submit'>
-        </form>
+            <jsp:getProperty name="questionnaireContent" property="result"/>
+          
 
     </body>
     

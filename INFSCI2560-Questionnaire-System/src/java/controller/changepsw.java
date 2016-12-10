@@ -5,7 +5,6 @@
  */
 package controller;
 
-import model.userBean;
 import dataAccessObject.userDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author qssheep
  */
-//@WebServlet(name = "login", urlPatterns = {"/login"})
-public class login extends HttpServlet {
+//@WebServlet(name = "changepsw", urlPatterns = {"/changepsw"})
+public class changepsw extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,39 +41,28 @@ public class login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-       
         HttpSession session = request.getSession();
-        userBean account = new userBean();
-        String username = request.getParameter("username");
+        int userid = (int)session.getAttribute("userID");
         String pwd = request.getParameter("pwd");
-        account.setPassword(pwd);
-        account.setUsername(username);
+        String npwd = request.getParameter("npwd");
+        String cnpwd = request.getParameter("cnpwd");
         userDao ud = new userDao();
-        int userid = 0;
-        if(username != null) {
-            if(pwd != null) {
-                //System.out.println("success");
-                //session.setAttribute("account", account);
-                userid = ud.retrieveUser(username, pwd);
-                if(userid > 0){
-                    System.out.println("success");
-                    String login_suc = "loginsuccess.jsp";
-                    session.setAttribute("userName", username);
-                    session.setAttribute("userID", userid);
-                    response.sendRedirect(login_suc);
-                    return;
-                }
-            }
+        int err = 0;
+        if(!npwd.equals(cnpwd))
+            err = -2; //new password not match
+        else{
+            err = ud.changepsw(userid, pwd, npwd);
+            if(err >= 0){
+                response.sendRedirect("success.jsp");
+                return;
+            }                
         }
-        String login_fail = "fail.jsp";
-        if(userid == -2)
-            session.setAttribute("err", "Username not exist!");
+         if(err == -2)
+            session.setAttribute("err", "New password not match!");
         else
-            if(userid == -1)
-                session.setAttribute("err", "Wrong password!");
-            else
-                session.setAttribute("err", "Login failed!");
-        response.sendRedirect(login_fail);
+            session.setAttribute("err", "Wrong password!");
+        System.out.println(err);
+        response.sendRedirect("fail.jsp");
         return;
     }
 
@@ -93,7 +81,7 @@ public class login extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(changepsw.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -111,7 +99,7 @@ public class login extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(changepsw.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

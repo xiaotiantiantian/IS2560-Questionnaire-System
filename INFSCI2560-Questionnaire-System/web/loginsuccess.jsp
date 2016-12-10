@@ -10,9 +10,6 @@
 
 
 <%
-    //log RBAC activity       
-        //get client ip addr and request URI for activity log
-        String sysSource = request.getRequestURI();
     //check whether the role ID of the user has priviledge for current page
     if (request.getSession().getAttribute("userName") == null) {
         response.sendRedirect("login.jsp");
@@ -64,6 +61,8 @@
         </nav>
         <div class="page-header">
                 <h1>Role Management</h1>
+                <a href='changepsw.jsp'>change password</a>
+                <a href='changeuserinfo.jsp'>change user information</a>
         </div>
         
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

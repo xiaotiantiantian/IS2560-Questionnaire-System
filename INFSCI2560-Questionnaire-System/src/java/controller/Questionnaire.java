@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dataAccessObject.QuestionDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,6 +18,9 @@ import dataAccessObject.QuestionnaireDao;
 import model.QuestionnaireModel;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.ServletConfig;
+import javax.servlet.http.HttpSession;
+import model.QuestionAndSelection;
 
 /**
  *
@@ -33,51 +37,82 @@ public class Questionnaire extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected QuestionnaireModel hostileEntry;
-
-    protected List<QuestionnaireModel> HostileList = new ArrayList<QuestionnaireModel>();
-
-    public QuestionnaireDao hostileDao = new QuestionnaireDao();
-
-    public Questionnaire() {
-        super();
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
     }
 
+//    protected QuestionnaireModel hostileEntry;
+//
+//    protected List<QuestionnaireModel> HostileList = new ArrayList<QuestionnaireModel>();
+//
+//    public QuestionnaireDao hostileDao = new QuestionnaireDao();
+//
+//    public Questionnaire() {
+//        super();
+//    }
     /**
      *
-     * @param 
-     * @param 
-     * @param 
+     * @param @param @param
      */
 //
-    public Questionnaire(int countAttempts, String IPAddress, String SYSTEM_SOURCE) {
-        super();
-
-    }
-
+//    public Questionnaire(int countAttempts, String IPAddress, String SYSTEM_SOURCE) {
+//        super();
+//
+//    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Questionnaire Status</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Add a record to database successful </h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-            // response.sendRedirect("activitylog.jsp");
+        HttpSession session = request.getSession();
+        String questionnaireTitle = (String) request.getParameter("questionnaireTitle");
+        String questionTitle = "null";
+        String questionSel1 = "null";
+        String questionSel2 = "null";
+        String questionSel3 = "null";
+        String questionSel4 = "null";
+        String questionSel5 = "null";
+        String type = "";
+        
+        QuestionnaireDao questionnaireDao = new QuestionnaireDao();
+        int questionnaireID = questionnaireDao.WriteQuestionnaireToDB(questionnaireTitle);
+        QuestionDao questionDao = new QuestionDao();
+//        QuestionAndSelection questionAndSelection = new QuestionAndSelection();
+        List<QuestionAndSelection> qsList = new ArrayList<QuestionAndSelection>();
+        
+        for(int i = 1; request.getParameter("questionnaireQ"+i)!= null; i++){
+            type = (String) request.getParameter("question-type"+i);
+            questionTitle = (String) request.getParameter("questionnaireQ"+i);
+            if (request.getParameter("questionnaireQ"+i+"Sel1") != null) {
+                questionSel1 = (String) request.getParameter("questionnaireQ"+i+"Sel1");
+            }
+            if (request.getParameter("questionnaireQ"+i+"Sel2") != null) {
+                questionSel2 = (String) request.getParameter("questionnaireQ"+i+"Sel2");
+            }
+            if (request.getParameter("questionnaireQ"+i+"Sel3") != null) {
+                questionSel3 = (String) request.getParameter("questionnaireQ"+i+"Sel3");
+            }
+            if (request.getParameter("questionnaireQ"+i+"Sel4") != null) {
+                questionSel4 = (String) request.getParameter("questionnaireQ"+i+"Sel4");
+            }
+            if (request.getParameter("questionnaireQ"+i+"Sel5") != null) {
+                questionSel5 = (String) request.getParameter("questionnaireQ"+i+"Sel5");
+            }
+             QuestionAndSelection qs = new QuestionAndSelection(questionnaireID, questionTitle,questionSel1, questionSel2, questionSel3, questionSel4, questionSel5,type );
+             qsList.add(qs);
+        }
+        
+         for(QuestionAndSelection qs:qsList){
+                 questionDao.WriteQuestionAndSelectionToDB(qs);
 
         }
+        
+
+        
+       
+        
+       
+        response.sendRedirect("index.html");
+
     }
 
     /**
@@ -87,7 +122,7 @@ public class Questionnaire extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    public void redirectHostile(HttpServletRequest request, HttpServletResponse response)
+    public void redirectQuestionnaire(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 //        try (PrintWriter out = response.getWriter()) {

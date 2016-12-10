@@ -44,7 +44,7 @@ public class QuestionnaireDao {
     public int WriteQuestionnaireToDB(String title) {
 //        PreparedStatement ps;
         try {
-            String sql = "INSERT INTO INFSCI2560.questionnaire (QuestionnaireTitle) vaules (?)";
+            String sql = "INSERT INTO INFSCI2560.questionnaire (QuestionnaireTitle) values (?)";
 
             ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, title);

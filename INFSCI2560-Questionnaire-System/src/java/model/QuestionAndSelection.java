@@ -18,6 +18,7 @@ public class QuestionAndSelection {
     private String Selection3;
     private String Selection4;
     private String Selection5;
+    private String Type;
 
     public QuestionAndSelection() {
     }
@@ -33,7 +34,16 @@ public class QuestionAndSelection {
         this.Selection5 = Selection5;
     }
     
-    
+        public QuestionAndSelection(int QuestionnaireID , String QuestionContent, String Selection1, String Selection2, String Selection3, String Selection4, String Selection5, String Type) {
+        this.QuestionnaireID = QuestionnaireID;
+        this.QuestionContent = QuestionContent;
+        this.Selection1 = Selection1;
+        this.Selection2 = Selection2;
+        this.Selection3 = Selection3;
+        this.Selection4 = Selection4;
+        this.Selection5 = Selection5;
+        this.Type = Type;
+    }
 
     public int getQuestionnaireID() {
         return QuestionnaireID;
@@ -97,6 +107,14 @@ public class QuestionAndSelection {
 
     public void setSelection5(String Selection5) {
         this.Selection5 = Selection5;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String Type) {
+        this.Type = Type;
     }
     
     

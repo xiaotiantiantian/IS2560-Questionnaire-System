@@ -35,13 +35,23 @@ public class QuestionDao {
     String sql = "";
     int autoKey = 0;
 
-    QuestionDao() {
+    public QuestionDao() {
         connection = DbConnection.getConnection();
     }
-
-    public int WriteQuestionAndSelectionToDB(int questionnaireID, String questionContent, String selection1, String selection2, String selection3, String selection4, String selection5) {
+    public int WriteQuestionAndSelectionToDB(QuestionAndSelection qa){
+        return WriteQuestionAndSelectionToDB(qa.getQuestionnaireID(),
+                qa.getQuestionContent(),
+                qa.getSelection1(),
+                qa.getSelection2(),
+                qa.getSelection3(),
+                qa.getSelection4(),
+                qa.getSelection5(),
+                qa.getType());
+    }
+    
+    public int WriteQuestionAndSelectionToDB(int questionnaireID, String questionContent, String selection1, String selection2, String selection3, String selection4, String selection5, String type) {
         try {
-            String sql = "INSERT INTO INFSCI2560.question (QuestionnaireID, QuestionContent, Selection1, Selection2, Selection3, Selection4, Selection5) vaules (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO INFSCI2560.question (QuestionnaireID, QuestionContent, Selection1, Selection2, Selection3, Selection4, Selection5, Type) values (?,?,?,?,?,?,?,?)";
 
             ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, questionnaireID);
@@ -51,6 +61,7 @@ public class QuestionDao {
             ps.setString(5, selection3);
             ps.setString(6, selection4);
             ps.setString(7, selection5);
+            ps.setString(8, type);
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();

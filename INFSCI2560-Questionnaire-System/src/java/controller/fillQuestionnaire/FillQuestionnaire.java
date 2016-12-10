@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
+import javax.servlet.http.HttpSession;
 import model.showQuestionnaire.*;
 /**
  *
@@ -29,30 +30,48 @@ public class FillQuestionnaire extends HttpServlet{
     }
     public void doPost(HttpServletRequest request,HttpServletResponse response)
             throws ServletException,IOException{
+        Connection con;
+        Statement sql;
         StringBuffer out = new StringBuffer();
         ShowFilledResult sr = new ShowFilledResult();
         request.setAttribute("filledQuestionnaire", sr);
         int i=1;
-        while(request.getParameter("question"+i)!=null){
-            out.append("<p>"+request.getParameter("question"+i)+":   ");
-            String[] select = request.getParameterValues("questionResult"+i);
-            int[] selectionArray = new int[5];
-//            for(String j:select){
-//                out.append(j+" ");
-//            }
-            for(int j=0;j<select.length;j++){
-                if(select[j]!=null){
-                    selectionArray[Integer.parseInt(select[j])-1]=1;
+        String questionID;
+        try{
+            HttpSession session = request.getSession();
+            String userID = Integer.toString((int)session.getAttribute("userID"));
+            String uri="jdbc:mysql://localhost:3306/infsci2560?"+
+                        "user=root&password=root&characterEncoding=gb2312";
+            con = DriverManager.getConnection(uri);
+            sql = con.createStatement();
+            out.append(userID);
+            while((questionID=request.getParameter("question"+i))!=null){
+                out.append("<p>"+request.getParameter("question"+i)+":   ");
+                String[] select = request.getParameterValues("questionResult"+i);
+                int[] selectionArray = new int[5];
+
+                for(int j=0;j<select.length;j++){
+                    if(select[j]!=null){
+                        selectionArray[Integer.parseInt(select[j])-1]=1;
+                    }
                 }
-            }for(int j:selectionArray){
-                out.append(j+" ");
+                for(int j:selectionArray){
+                    out.append(j+" ");
+                }
+                sql.executeUpdate("INSERT INTO answer VALUES ("+userID+","+questionID+","+selectionArray[0]+","+selectionArray[1]+","+
+                                    selectionArray[2]+","+selectionArray[3]+","+selectionArray[4]+")");
+                out.append("</p>");
+                i++;
             }
-            
-            out.append("</p>");
-            i++;
+            sr.setResult(out);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("showFill.jsp");
+            dispatcher.forward(request, response);
         }
-        sr.setResult(out);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("showFill.jsp");
-        dispatcher.forward(request, response);
+        catch(Exception e){}
+        
     }
+    public void doGet(HttpServletRequest request,HttpServletResponse response)
+            throws ServletException,IOException{
+         doPost(request,response);
+     }
 }

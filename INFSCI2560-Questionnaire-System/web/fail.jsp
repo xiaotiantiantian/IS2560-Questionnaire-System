@@ -12,6 +12,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Failed! </h1>
+        <%  String err = (String) session.getAttribute("err");
+            out.print("<h1>"+err+"</h1>");
+            String username = (String) session.getAttribute("userName");
+            if(username != null)
+                out.print("<a href='loginsuccess.jsp'>back to index page</a>");
+            else
+                out.print("<a href='index.html'>back to index page</a>");
+        %>
    </body>
 </html>

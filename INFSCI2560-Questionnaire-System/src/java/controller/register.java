@@ -53,20 +53,28 @@ public class register extends HttpServlet {
         account.setUsername(username);
         account.setSex(sex);
         userDao ud = new userDao();
+        int ca = -1;
         if(username != null) {
             if(pwd != null) {
                 //System.out.println("success");
                 //session.setAttribute("account", account);
-                if(ud.createAccount(username, sex) != -1){
+                ca = ud.createAccount(username, sex);
+                if(ca > -1){
                     if(ud.setPassword(username, pwd) != -1){
                         System.out.println("success");
                         String register_suc = "success.jsp";
                         response.sendRedirect(register_suc);
                         return;
                     }
+                    else
+                        ca = -1;
                 }
             }
         }
+        if(ca == -2)
+            session.setAttribute("err", "Username already exist!");
+        else
+            session.setAttribute("err", "Register failed!");
         String register_fail = "fail.jsp";
         response.sendRedirect(register_fail);
         return;
