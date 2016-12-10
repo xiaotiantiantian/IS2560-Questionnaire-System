@@ -4,9 +4,11 @@
     Author     : qssheep
 --%>
 
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.userBean"%>
 <%@page import="java.util.List"%>
+<%@page import="model.showQuestionnaire.ShowRecentQuestionnaire" %>
+<jsp:useBean id="recentQuestionnaire" class="model.showQuestionnaire.ShowRecentQuestionnaire" scope="request"/>
 
 
 <%
@@ -15,7 +17,7 @@
         response.sendRedirect("login.jsp");
     }
 %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -80,8 +82,8 @@
                 <h1>Dashboard</h1>
             </div>
         <div class="page-header">
-            <p><a href='changepsw.jsp'>change password</a></p>
-            <p><a href='changeuserinfo.jsp'>change user information</a></p>
+          
+            <jsp:getProperty name="recentQuestionnaire" property="result"/>
         </div>
 
           </div><!--container-->
