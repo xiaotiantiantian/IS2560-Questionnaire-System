@@ -22,6 +22,33 @@
         <title>Search Questionnaire</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+        <!--           <script type="text/javascript">  
+        11.          
+        12.        function $(str){  
+        13.            return (document.getElementById(str));  
+        14.        }  
+        15.          
+        16.        function check_submit(){  
+        //17.            if($("username").value ==""){  
+        //18.                alert("请填写用户名!");  
+        //19.                return false;  
+        //20.            }  
+        //21.            if($("password").value == ""){  
+        //22.                alert("请填写密码!");  
+        //23.                return false;  
+        //24.            }  
+                        var qid = 1;
+                        while($("q"+qid)!=null){
+                            if($("q"+qid).value ==""){
+                                alert("Survey is not fullfilled!");
+                                return false;
+                            }
+                            i++;
+                        }
+        25.        }  
+        26.    </script> -->
+
+
     </head>
     <!--<script src="js/formQuestionnaireEditAdd.js?ver=2" type="text/javascript"></script>-->
     <body>
@@ -82,7 +109,7 @@
             <jsp:getProperty name="questionnaireContent" property="result"/>
             <br><input type='submit' value='submit' name='submit'>
         </form>-->
-            <form id="Questionnaire" action="FillQuestionnaire" method="post">
+            <form id="Questionnaire" action="FillQuestionnaire" method="post" onsubmit="return check_submit();">
                 <div class="form-group">
                     <jsp:getProperty name="questionnaireContent" property="result"/>
                 </div>
@@ -107,5 +134,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="js/formCheck.js" type="text/javascript"></script>
         <!--<script src="js/formQuestionnaireEditAdd.js?ver=2" type="text/javascript"></script>-->
+
+ 
     </body>
 </html>

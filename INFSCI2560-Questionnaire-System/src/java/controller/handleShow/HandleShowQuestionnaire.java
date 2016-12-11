@@ -60,31 +60,63 @@ public class HandleShowQuestionnaire extends HttpServlet {
                         + "</div>");
                 result.append("<input type=\"hidden\" name=\"question" + i + "\" value=\"" + rs.getString(2) + "\" />");
                 result.append("<p>");
+                result.append("<div class=\"btn-group\" required>");
+//                if (rs.getString("Type").equals("M")) {
+//                    result.append("<div class=\"checkbox\">");
+//                }
                 for (int j = 4; j <= 8; j++) {
+
                     if (!rs.getString(j).equals("null")) {
+
                         if (rs.getString("Type").equals("M")) {
+
                             result.append("<div class=\"checkbox\">\n"
                                     + "  <label for=\"q" + i + "\" >");
-                            result.append("<input type=\"checkbox\" id=\"q" + i + "\" name=\"questionResult" + i + "\" value=\"" + (j - 3) + "\" />");
+                            result.append("<input type=\"checkbox\" id=\"q" + i + "\" name=\"questionResult" + i + "\" value=\"" + (j - 3) + "\"   />");
+//                            result.append("<label for=\"q" + i + "\" >");
+                            result.append(rs.getString(j) + "  ");
+                            result.append("</label>");
+//                                    + "</div>");
+                            result.append("</div>");
+
+                        } else {
+//                            result.append("<div class=\"btn-group\">");
+                            result.append("<div class=\"radio\">\n"
+                                    + "  <label for=\"q" + i + "\" >");
+                            result.append("<input type=\"radio\" id=\"q" + i + "\" name=\"questionResult" + i + "\" value=\"" + (j - 3) + "\" required />");
 //                            result.append("<label for=\"q" + i + "\" >");
                             result.append(rs.getString(j) + "  ");
                             result.append("</label>"
                                     + "</div>");
 
-                        } else {
-                            result.append("<div class=\"radio\">\n"
-                                    + "  <label for=\"q" + i + "\" >");
-                            result.append("<input type=\"radio\" id=\"q" + i + "\" name=\"questionResult" + i + "\" value=\"" + (j - 3) + "\" />");
-//                            result.append("<label for=\"q" + i + "\" >");
-                            result.append(rs.getString(j) + "  ");
-                             result.append("</label>"
-                                    + "</div>");
                         }
+
                     }
                 }
+//                if (rs.getString("Type").equals("M")) {
+//                    result.append("</div>");
+//                }
+                result.append("</div>");
+
                 result.append("</p>");
                 i++;
             }
+
+            result.append("       <script type=\"text/javascript\">\n"
+                    //                    +"alert('666');"
+                    + "                $(document).ready(function () {\n"
+                    + "                    $('#submit').click(function () {\n"
+                    + "                        checked = $(\"input[type=checkbox]:checked\").length;\n"
+                    + "\n"
+                    + "                        if (!checked) {\n"
+                    + "                            alert(\"You must check at least one checkbox.\");\n"
+                    + "                            return false;\n"
+                    + "                        }\n"
+                    + "\n"
+                    + "                    });\n"
+                    + "                });\n"
+                    + "\n"
+                    + "        </script>");
 
             qc.setResult(result);
             con.close();

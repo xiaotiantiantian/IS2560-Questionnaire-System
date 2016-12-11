@@ -42,7 +42,7 @@
                         <li><a href="loginsuccess.jsp">Home</a></li>
                         <li><a href="QuestionnaireBasicInfo.jsp">Edit Questionnaire</a></li>
                         <li><a href="showCreatedQuestionnaire.jsp">Show My Questionnaire</a></li>
-                        <li class="active"><a href="Search.jsp">Search Questionnaire</a></li>
+                        <li><a href="Search.jsp">Search Questionnaire</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Personal Information <b class="caret"></b>

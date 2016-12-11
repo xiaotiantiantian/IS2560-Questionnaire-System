@@ -98,6 +98,13 @@ public class Questionnaire extends HttpServlet {
 
         for (int i = 1; request.getParameter("questionnaireQ" + i) != null; i++) {
             type = (String) request.getParameter("question-type" + i);
+            questionTitle = "null";
+            questionSel1 = "null";
+            questionSel2 = "null";
+            questionSel3 = "null";
+            questionSel4 = "null";
+            questionSel5 = "null";
+
             questionTitle = (String) request.getParameter("questionnaireQ" + i);
             if (request.getParameter("questionnaireQ" + i + "Sel1") != null) {
                 questionSel1 = (String) request.getParameter("questionnaireQ" + i + "Sel1");

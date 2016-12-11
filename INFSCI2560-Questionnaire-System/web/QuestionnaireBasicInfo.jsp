@@ -105,7 +105,7 @@
                     var newDiv = "<div class='form-group' id=selectionQ" + countQuestion + "Sel" + countSelection + ">"
                             + "<label for='questionnaireQ" + countQuestion + "Sel" + countSelection + "'>Selection " + countSelection + "</label>"
                             + " <input id='questionnaireQ" + countQuestion + "Sel" + countSelection + "' class='form-control' name='questionnaireQ" + countQuestion + "Sel" + countSelection + "'  placeholder='input text here' maxlength='254'  required='' type='text'>"
-                            + " <a href=javascript:delSelection('selectionQ" + countQuestion + "Sel" + countSelection + "');>delete</a>"
+                            + " <a id ='deleteSelectionLink' href=javascript:delSelection('selectionQ" + countQuestion + "Sel" + countSelection + "');>delete</a>"
                             + " </div>";
                     document.getElementById("Questionnaire").insertAdjacentHTML("beforeEnd", newDiv);
                 }
@@ -116,27 +116,45 @@
                 }
                 function addQuestion() {
                     countSelection = 0;
+
+                    var elem = document.getElementById('addSelection' + countQuestion);
+                    elem.parentNode.removeChild(elem);
+                    while (document.getElementById('deleteSelectionLink') != null) {
+                        var elem1 = document.getElementById('deleteSelectionLink');
+                        elem1.parentNode.removeChild(elem1);
+                    }
+
+
+
                     countQuestion++;
+
+
                     var newDiv = " <div class=\"form-group\">"
-                            + " <label for=\"questionnaireQ" + countQuestion + "\"><h3>Question " + countQuestion + "</h3></label>"
-                            + "<input name=\"questionnaireQ" + countQuestion + "\" id=\"questioinnaireQ" + countQuestion + "\" type=\"text\" class=\"form-control\" placeholder=\"input text here\" maxlength=\"254\" required>";
-
-                    newDir += "";
-
-
-
-                    newDir += "<p class=\"row\">"
-                            + "<input type=\"radio\" id=\"question-type-single" + countQuestion + "\" name=\"question-type" + countQuestion + "\" value=\"S\"/>"
-                            + "<label for=\"question-type-single" + countQuestion + "\">Single Selection Question</label>"
-                            + "<input type=\"radio\" id=\"question-type-multiple" + countQuestion + "\" name=\"question-type" + countQuestion + "\" value=\"M\"/>"
-                            + "<label for=\"question-type-multiple" + countQuestion + "\">Multiple Selection Question</label>"
-                            + "<input type=\"radio\" id=\"question-type-fillblank" + countQuestion + "\" name=\"question-type" + countQuestion + "\" value=\"F\"/>"
-                            + "<label for=\"question-type-fillblank" + countQuestion + "\">Fill in blank Question</label>"
-                            + "</p>"
+                            + "<div>"
+                            + " <label for=\"questionnaireQ" + countQuestion + "\"><h3>Question " + countQuestion + " &nbsp;  &nbsp;  &nbsp;  &nbsp; </h3></label>"
+                            + "<button type=\"button\" id=\"addQuestion" + countQuestion + "\" class=\"btn btn-default\" onclick = \"addQuestion();\">Add Another Question</button> "
                             + "</div>"
+                            + "<input name=\"questionnaireQ" + countQuestion + "\" id=\"questioinnaireQ" + countQuestion + "\" type=\"text\" class=\"form-control\" placeholder=\"input text here\" maxlength=\"254\" required>"
+                            + "<p></p>"
+                            + "<label for=\"sel1\">Question Type List:</label>"
+                            + "<select class=\"form-control\" name=\"question-type" + countQuestion + "\" id=\"questiont-type" + countQuestion + "\">"
+                            + " <option value=\"S\">Single Selection Question</option>"
+                            + " <option value=\"M\">Multiple Selection Question</option>"
+//                            + "<option value=\"F\">Fill in Blank Question</option>"
+                            + "</select>"
+//                            + "<p class=\"row\">"
+//                            + "<input type=\"radio\" id=\"question-type-single" + countQuestion + "\" name=\"question-type" + countQuestion + "\" value=\"S\"/>"
+//                            + "<label for=\"question-type-single" + countQuestion + "\">Single Selection Question</label>"
+//                            + "<input type=\"radio\" id=\"question-type-multiple" + countQuestion + "\" name=\"question-type" + countQuestion + "\" value=\"M\"/>"
+//                            + "<label for=\"question-type-multiple" + countQuestion + "\">Multiple Selection Question</label>"
+//                            + "<input type=\"radio\" id=\"question-type-fillblank" + countQuestion + "\" name=\"question-type" + countQuestion + "\" value=\"F\"/>"
+//                            + "<label for=\"question-type-fillblank" + countQuestion + "\">Fill in blank Question</label>"
+//                            + "</p>"
+                            + "</div>"
+                            + "<p></p>"
                             + "<button type=\"button\" id=\"addSelection" + countQuestion + "\" class=\"btn btn-default\" onclick = \"addSelection();\">Add Selection</button>"
-                            + "<button type=\"button\" id=\"addQuestion" + countQuestion + "\" class=\"btn btn-default\" onclick = \"addQuestion();\">Add Question</button> "
-                            + " <a href=javascript:delSelection('selection" + countSelection + "');>delet</a>";
+                            + "<p></p>";
+//                            + " <a href=javascript:delSelection('selection" + countSelection + "');>delet</a>"
                     document.getElementById("Questionnaire").insertAdjacentHTML("beforeEnd", newDiv);
 
                 }
@@ -145,17 +163,24 @@
             <div class="ManagementArea" style="margin-top:30px">
                 <form id="Questionnaire" action="Questionnaire" method="post">
                     <div class="form-group">
-                        <label for="questionnaireTitle"><h2>Questionnaire Title</h2></label>
+                        <div>
+                            <label for="questionnaireTitle"><h2>Questionnaire Title &nbsp;  &nbsp;  &nbsp;  &nbsp; </h2></label>
+                            <button type="submit" id="submit" class="btn btn-default">Submit Questionnaire</button>
+                        </div>
                         <input name="questionnaireTitle" id="questionnaireTitle" type="text" class="form-control"  placeholder="input a title here" maxlength="254"  required>
                     </div>
                     <div class="form-group">
-                        <label for="questionnaireQ1"><h3>Question 1</h3></label>
+                        <div>
+                            <label for="questionnaireQ1"><h3>Question 1 &nbsp;  &nbsp;  &nbsp;  &nbsp; </h3></label>
+                            <button type="button" id="addQuestion1" class="btn btn-default" onclick = "addQuestion();">Add Another Question</button>       
+                        </div>
                         <input name="questionnaireQ1" id="questionnaireQ1" type="text" class="form-control"  placeholder="input text here" maxlength="254"  required>
-                        <label for="sel1">Select list:</label>
+                        <p></p>
+                        <label for="sel1">Question Type List:</label>
                         <select class="form-control" name="question-type1" id="questiont-type1">
                             <option value="S">Single Selection Question</option>
                             <option value="M">Multiple Selection Question</option>
-                            <option value="F">Fill in Blank Question</option>
+                            <!--<option value="F">Fill in Blank Question</option>-->
                         </select>
                         <!--                        <p class="row">
                                                     <input type="radio" id="question-type-single" name="question-type1" value="S"/>
@@ -166,9 +191,11 @@
                                                     <label for="question-type-fillblank">Fill in blank Question</label>                            
                                                 </p>-->
                     </div>
-                    <button type="submit" id="submit" class="btn btn-default">Submit</button>
+                    <!--<button type="submit" id="submit" class="btn btn-default">Submit</button>-->
+                    <p></p>
                     <button type="button" id="addSelection1" class="btn btn-default" onclick = "addSelection();">Add Selection</button>
-                    <button type="button" id="addQuestion1" class="btn btn-default" onclick = "addQuestion();">Add Question</button>       
+                    <p></p>
+                    <!--                    <button type="button" id="addQuestion1" class="btn btn-default" onclick = "addQuestion();">Add Question</button>       -->
 
                 </form>
                 <div class="message">
