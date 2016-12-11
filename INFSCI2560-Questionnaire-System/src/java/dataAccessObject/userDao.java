@@ -65,6 +65,30 @@ public class userDao {
         }         
        
     }
+    public String getPicPathFromUserID(int userID){
+          try {
+                //sql = "SELECT * from is2560.users WHERE username = ? ";               
+                sql = "select UserPicture from infsci2560.userinformation  where UserID = ?";
+
+                
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setInt(1, userID);     
+//                System.out.println(ps);
+                ps.executeUpdate();
+                rs=ps.getResultSet();
+                
+                String str = "";
+                if(rs!=null) {
+                  return rs.getString("UserPicture");
+                }else return null;
+                
+            
+                
+        } catch (SQLException e) {
+                e.printStackTrace();
+          return null;
+        } 
+    }
     public int setPassword(String name, String password){
         try {
                 sql = "SELECT UserID from INFSCI2560.userinformation WHERE UserName = '"+ name + "'";

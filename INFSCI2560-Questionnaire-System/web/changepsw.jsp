@@ -17,7 +17,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Questionnaire</title>
+        <title>Change User Password</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     </head>
@@ -43,11 +43,11 @@
                         <li><a href="showCreatedQuestionnaire.jsp">Show My Questionnaire</a></li>
                         <li><a href="Search.jsp">Search Questionnaire</a></li>
                         <li class="dropdown">
-                            <a href="ShowUserInfo.jsp" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Personal Information <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">View User Info</a></li>
+                                <li><a href="ShowUserInfo.jsp">View User Info</a></li>
                                 <li class="divider"></li>
                                 <li class="active"><a href="changepsw.jsp">Change Password</a></li>
                                 <li><a href="changeuserinfo.jsp">Change User Info</a></li>

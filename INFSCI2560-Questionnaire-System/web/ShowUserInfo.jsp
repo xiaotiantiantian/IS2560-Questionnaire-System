@@ -18,7 +18,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Questionnaire</title>
+        <title>Show User Account Information  Overview</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     </head>
@@ -44,11 +44,11 @@
                         <li><a href="showCreatedQuestionnaire.jsp">Show My Questionnaire</a></li>
                         <li><a href="Search.jsp">Search Questionnaire</a></li>
                         <li class="dropdown">
-                            <a href="ShowUserInfo.jsp" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Personal Information <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">View User Info</a></li>
+                                <li><a href="ShowUserInfo.jsp">View User Info</a></li>
                                 <li class="divider"></li>
                                 <li class="active"><a href="changepsw.jsp">Change Password</a></li>
                                 <li><a href="changeuserinfo.jsp">Change User Info</a></li>
@@ -76,50 +76,79 @@
         <div class="container" style="margin-top:100px;margin-bottom:250px;">
 
             <div class="page-header">
-                <h1>Change Password</h1>
+                <h1>User Account Information Overview</h1>
             </div>
-        <%
-            String userID = Integer.toString((int)session.getAttribute("userID"));
+            <%
+                String userID = Integer.toString((int) session.getAttribute("userID"));
             %>
             <jsp:setProperty name="userinfo" property="userID" value="<%= userID%>"/>
-        <table>
-            <tr>
-                <td>
-                    <p>Name: </p>
-                </td>
-                <td>
-                    <jsp:getProperty name="userinfo" property="userName" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Gender: </p>
-                </td>
-                <td>
-                    <jsp:getProperty name="userinfo" property="gender" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Created: </p>
-                </td>
-                <td>
-                    <jsp:getProperty name="userinfo" property="createNumber" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Filled: </p>
-                </td>
-                <td>
-                    <jsp:getProperty name="userinfo" property="filledNumber" />
-                </td>
-            </tr>
-        </table>
-                <img src=image/<jsp:getProperty name="userinfo" property="picture" /> ></img>
-       
- 
-  </div><!--container-->
+
+            <div class="row">
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <img src="image/<jsp:getProperty name='userinfo' property='picture' />" width=100 hight=100></img>
+                        <div class="caption">
+                            <p>
+                                <a href="upload.jsp" class="btn btn-primary btn-lg btn-block" role="button">
+                                    Change User Picture
+                                </a> 
+      
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                        <div class="table-responsive">
+
+                <table class="table table-striped">
+                    <caption>User Info</caption>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td><jsp:getProperty name="userinfo" property="userName" /></td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td><jsp:getProperty name="userinfo" property="gender" /></td>
+                        </tr>
+                        <tr>
+                            <td>Created</td>
+                            <td> <jsp:getProperty name="userinfo" property="createNumber" /></td>
+                        </tr>            
+                        <tr>
+                            <td>Filled</td>
+                            <td><jsp:getProperty name="userinfo" property="filledNumber" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+
+<!--            <div class="table-responsive">
+
+                <table class="table table-striped">
+                    <caption>User Info</caption>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td><jsp:getProperty name="userinfo" property="userName" /></td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td><jsp:getProperty name="userinfo" property="gender" /></td>
+                        </tr>
+                        <tr>
+                            <td>Created</td>
+                            <td> <jsp:getProperty name="userinfo" property="createNumber" /></td>
+                        </tr>            
+                        <tr>
+                            <td>Filled</td>
+                            <td><jsp:getProperty name="userinfo" property="filledNumber" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <img src=image/<jsp:getProperty name="userinfo" property="picture" /> ></img>-->
+        </div><!--container-->
 
         <footer class="footer">
             <div class="container">

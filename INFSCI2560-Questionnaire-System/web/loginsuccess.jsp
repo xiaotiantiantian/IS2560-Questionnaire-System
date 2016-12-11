@@ -22,7 +22,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Dashboard</title>
+        <title>List of Recent Questionnaire</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     </head>
@@ -80,11 +80,14 @@
         <div class="container" style="margin-top:100px;margin-bottom:250px;">
 
             <div class="page-header">
-                <h1>Dashboard</h1>
+                <h1>List of Recent Questionnaire</h1>
             </div>
         <div class="page-header">
           
             <jsp:getProperty name="recentQuestionnaire" property="result"/>
+            <%
+                int result_number = 5;
+                %>
         </div>
 
           </div><!--container-->
