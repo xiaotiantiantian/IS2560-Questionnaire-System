@@ -48,9 +48,9 @@
                                 Personal Information <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="ShowUserInfo.jsp">View User Info</a></li>
+                                <li class="active"><a href="ShowUserInfo.jsp">View User Info</a></li>
                                 <li class="divider"></li>
-                                <li class="active"><a href="changepsw.jsp">Change Password</a></li>
+                                <li><a href="changepsw.jsp">Change Password</a></li>
                                 <li><a href="changeuserinfo.jsp">Change User Info</a></li>
                                 <li><a href="upload.jsp">Change User Photo</a></li>
                             </ul>
