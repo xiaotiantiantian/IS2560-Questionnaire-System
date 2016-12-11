@@ -43,13 +43,10 @@ public class Upload extends HttpServlet {
     private static final String DATA_DIRECTORY = "image";
     private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
     private static final int MAX_REQUEST_SIZE = 1024 * 1024;
- 
 
-/**
- * Servlet implementation class UploadServlet
- */
-
-
+    /**
+     * Servlet implementation class UploadServlet
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         // Check that we have a file upload request
@@ -80,7 +77,7 @@ public class Upload extends HttpServlet {
 
         // Set overall request size constraint
         upload.setSizeMax(MAX_REQUEST_SIZE);
-        String fileName = "";
+        String fileName = "", newname = "";
         try {
             // Parse the request
             List items = upload.parseRequest(request);
@@ -89,8 +86,11 @@ public class Upload extends HttpServlet {
                 FileItem item = (FileItem) iter.next();
 
                 if (!item.isFormField()) {
-                    fileName = (String)session.getId() + new File(item.getName()).getName();
-                    String filePath = uploadFolder + File.separator + fileName;
+//                    fileName = (String)session.getId() + new File(item.getName()).getName();
+//                    String filePath = uploadFolder + File.separator + fileName;
+                    fileName = new File(item.getName()).getName();
+                    newname = (String) session.getId() + fileName.substring(fileName.lastIndexOf("."));
+                    String filePath = uploadFolder + File.separator + newname;
                     File uploadedFile = new File(filePath);
                     System.out.println(filePath);
                     // saves the file to upload directory
@@ -98,11 +98,11 @@ public class Upload extends HttpServlet {
                 }
             }
             userDao ud = new userDao();
-            ud.changeuserpic((int)session.getAttribute("userID"), fileName);
+            ud.changeuserpic((int) session.getAttribute("userID"), newname);
             // displays done.jsp page after upload finished
             getServletContext().getRequestDispatcher("/done.jsp").forward(
                     request, response);
-            
+
         } catch (FileUploadException ex) {
             throw new ServletException(ex);
         } catch (Exception ex) {
