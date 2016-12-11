@@ -68,25 +68,58 @@
             <div class="page-header">
                 <h1>Register</h1>
             </div>
-<!--        <form action="register" method="post">
-            username:<input type="text" name="username"><br>
-            password:<input type="password" name="pwd"><br>
-            <legend>gender:</legend>
-            <p class="row">
-                <input type="radio" id="gender-male" name="gender" value="male"/>
-                <label for="gender-male">Male</label>
-            </p>
-            <p class="row">
-                <input type="radio" id="gender-female" name="gender" value="female"/>
-                <label for="gender-female">Female</label>
-            </p>
-            <p class="row">
-                <input type="radio" id="gender-others" name="gender" value="others"/>
-                <label for="gender-others">Others</label>
-            </p>
-            <input type="submit">
-        </form>-->
-  </div><!--container-->
+            <!--        <form action="register" method="post">
+                        username:<input type="text" name="username"><br>
+                        password:<input type="password" name="pwd"><br>
+                        <legend>gender:</legend>
+                        <p class="row">
+                            <input type="radio" id="gender-male" name="gender" value="male"/>
+                            <label for="gender-male">Male</label>
+                        </p>
+                        <p class="row">
+                            <input type="radio" id="gender-female" name="gender" value="female"/>
+                            <label for="gender-female">Female</label>
+                        </p>
+                        <p class="row">
+                            <input type="radio" id="gender-others" name="gender" value="others"/>
+                            <label for="gender-others">Others</label>
+                        </p>
+                        <input type="submit">
+                    </form>-->
+            <form action="register" method="post" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="username" id="usernamelabel" class="col-sm-2 control-label">User name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="please input the username">
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="pwd" id="pwdlabel" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="pwd" name="pwd" placeholder="please input the password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gender" class="col-sm-2 control-label">Gender</label>
+                    <div class="col-sm-10">
+                        <select  id="gender" name="gender" class="form-control">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Register</button>
+                    </div>
+                </div>
+            </form>
+
+
+
+
+        </div><!--container-->
 
         <footer class="footer">
             <div class="container">

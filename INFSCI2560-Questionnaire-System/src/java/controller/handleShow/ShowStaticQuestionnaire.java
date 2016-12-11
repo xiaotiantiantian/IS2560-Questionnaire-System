@@ -49,12 +49,17 @@ public class ShowStaticQuestionnaire extends HttpServlet{
                                     "q.QuestionID=a.QuestionID and q.QuestionnaireID="+questionnaireID);
             rs.last();
             int total=rs.getRow();
-            result.append("<p>"+"Total have "+total+" Participants"+"</p>");
+            result.append("<p><font size=\"3\" color=\"blue\">"+"Total have "+total+" Participants"+"</font></p>");
 
             rs = sql.executeQuery("SELECT * FROM question WHERE QuestionnaireID="+questionnaireID);
             int i=1;
             while(rs.next()){
-                result.append("<h2>"+rs.getString("QuestionContent")+"</h2>");
+                result.append("<div class=\"page-header\">\n"
+                        + "<h2>"
+                        + rs.getString("QuestionContent")
+                        + "</h2>\n"
+                        + "</div>");
+//                result.append("<h2>"+rs.getString("QuestionContent")+"</h2>");
                 result.append("<p>");
                 for(int j=4;j<=8;j++){
                     if(!rs.getString(j).equals("null")){
@@ -64,11 +69,16 @@ public class ShowStaticQuestionnaire extends HttpServlet{
                                     " and Selection"+(j-3)+"=1");
                             temp.last();
                             double choose=((double)temp.getRow()/total)*100.00;
+                             result.append("<div class=\"checkbox\">\n"
+                                    + "  <label for=\"q" + i + "\" >");
                             result.append("<input type=\"checkbox\" id=\"q"+i+"\" name=\"questionResult"+i+"\" value=\""+(j-3)+"\" disabled=\"disabled\"/>");
-                            result.append("<label for=\"q"+i+"\" >");
-                            result.append(rs.getString(j)+"  ");
+//                            result.append("<label for=\"q"+i+"\" >");
+                            result.append(rs.getString(j)+"                   |   ");
+                            result.append("<font size=\"3\" color=\"red\">");
                             result.append(choose+"%");
-                            result.append("</label>");
+                            result.append("</font>");
+                                  result.append("</label>"
+                                    + "</div>");
                         }
                         else{
                             sql2 = con.createStatement();
@@ -76,11 +86,16 @@ public class ShowStaticQuestionnaire extends HttpServlet{
                                     " and Selection"+(j-3)+"=1");
                             temp.last();
                             double choose=((double)temp.getRow()/total)*100.00;
+                             result.append("<div class=\"radio\">\n"
+                                    + "  <label for=\"q" + i + "\" >");
                             result.append("<input type=\"radio\" id=\"q"+i+"\" name=\"questionResult"+i+"\" value=\""+(j-3)+"\" disabled=\"disabled\"/>");
-                            result.append("<label for=\"q"+i+"\" >");
-                            result.append(rs.getString(j)+"  ");
+//                            result.append("<label for=\"q"+i+"\" >");
+                            result.append(rs.getString(j)+"                   |   ");
+                            result.append("<font size=\"3\" color=\"red\">");
                             result.append(choose+"%");
-                            result.append("</label>");
+                            result.append("</font>");
+                                  result.append("</label>"
+                                    + "</div>");
                         }
                     }
                 }

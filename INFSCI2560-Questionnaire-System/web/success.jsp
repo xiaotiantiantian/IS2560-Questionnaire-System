@@ -14,4 +14,6 @@
     <body>
         <h1>succeeded!</h1>
     </body>
+    <% request.getRequestDispatcher("login.jsp").forward(request, response);  
+        %>
 </html>

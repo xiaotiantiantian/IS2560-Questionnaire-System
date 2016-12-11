@@ -58,7 +58,7 @@ public class register extends HttpServlet {
             if(pwd != null) {
                 //System.out.println("success");
                 //session.setAttribute("account", account);
-                ca = ud.createAccount(username, sex);
+                ca = ud.createAccount(username, sex, "unknown.png");
                 if(ca > -1){
                     if(ud.setPassword(username, pwd) != -1){
                         System.out.println("success");

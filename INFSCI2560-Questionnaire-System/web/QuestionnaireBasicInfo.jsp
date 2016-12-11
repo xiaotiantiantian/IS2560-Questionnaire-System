@@ -15,6 +15,7 @@
 <%
     //check whether the role ID of the user has priviledge for current page
     if (request.getSession().getAttribute("userName") == null) {
+        request.getSession().setAttribute("msg", "no session, please login");
         response.sendRedirect("login.jsp");
     }
 %>

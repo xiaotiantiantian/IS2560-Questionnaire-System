@@ -31,7 +31,7 @@ public class userDao {
     }
     
     //create account by passing variable value from user instance
-    public int createAccount(String name, String sex){
+    public int createAccount(String name, String sex, String picname){
 
         try {
                 sql = "SELECT * FROM INFSCI2560.userinformation WHERE UserName = '"+ name +"'";
@@ -42,11 +42,12 @@ public class userDao {
                     return -2;
                 }else{
                     System.out.println("2");
-                    sql = "INSERT INTO INFSCI2560.userinformation(UserName, UserSex) values (?, ?)";
+                    sql = "INSERT INTO INFSCI2560.userinformation(UserName, UserSex, UserPicture) values (?, ?, ?)";
                     PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);  
                     // Parameters start with 1
                     ps.setString(1, name);               
-                    ps.setString(2, sex);               
+                    ps.setString(2, sex);
+                    ps.setString(3, picname);
                     ps.executeUpdate();
                 
                     ResultSet rs = ps.getGeneratedKeys();

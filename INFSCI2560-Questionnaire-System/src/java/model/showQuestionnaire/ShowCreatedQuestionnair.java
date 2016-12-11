@@ -31,9 +31,9 @@ public class ShowCreatedQuestionnair {
         Statement sql;
         ResultSet rs;
         try{
-            result.append("<p>");
-            result.append(userID);
-            result.append("</p>");
+//            result.append("<p>");
+////            result.append(userID);
+//            result.append("</p>");
             String uri = "jdbc:mysql://localhost:3306/infsci2560?"+
                         "user=root&password=root&characterEncoding=gb2312";
             con = DriverManager.getConnection(uri);

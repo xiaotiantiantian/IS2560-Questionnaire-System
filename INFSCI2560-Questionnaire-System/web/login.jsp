@@ -6,7 +6,13 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%
+    //check whether the role ID of the user has priviledge for current page
+//    if (request.getSession().getAttribute("msg") == null) {
+//        String errMsg = (String)request.getSession().getAttribute("msg");
+//        out.println(errMsg);
+//    }
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

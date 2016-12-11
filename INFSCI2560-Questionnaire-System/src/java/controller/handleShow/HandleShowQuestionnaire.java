@@ -63,19 +63,22 @@ public class HandleShowQuestionnaire extends HttpServlet {
                 for (int j = 4; j <= 8; j++) {
                     if (!rs.getString(j).equals("null")) {
                         if (rs.getString("Type").equals("M")) {
-                            result.append("<div class=\"c-inputs-stacked\">\n"
-                                    + "  <label class=\"c-input c-radio\">");
+                            result.append("<div class=\"checkbox\">\n"
+                                    + "  <label for=\"q" + i + "\" >");
                             result.append("<input type=\"checkbox\" id=\"q" + i + "\" name=\"questionResult" + i + "\" value=\"" + (j - 3) + "\" />");
-                            result.append("<label for=\"q" + i + "\" >");
+//                            result.append("<label for=\"q" + i + "\" >");
                             result.append(rs.getString(j) + "  ");
-                            result.append("</label>");
-                            
-                            
+                            result.append("</label>"
+                                    + "</div>");
+
                         } else {
+                            result.append("<div class=\"radio\">\n"
+                                    + "  <label for=\"q" + i + "\" >");
                             result.append("<input type=\"radio\" id=\"q" + i + "\" name=\"questionResult" + i + "\" value=\"" + (j - 3) + "\" />");
-                            result.append("<label for=\"q" + i + "\" >");
+//                            result.append("<label for=\"q" + i + "\" >");
                             result.append(rs.getString(j) + "  ");
-                            result.append("</label>");
+                             result.append("</label>"
+                                    + "</div>");
                         }
                     }
                 }
