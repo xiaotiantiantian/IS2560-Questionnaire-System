@@ -111,11 +111,11 @@
                             <td><jsp:getProperty name="userinfo" property="gender" /></td>
                         </tr>
                         <tr>
-                            <td>Created</td>
+                            <td>Created Questionnaire Number</td>
                             <td> <jsp:getProperty name="userinfo" property="createNumber" /></td>
                         </tr>            
                         <tr>
-                            <td>Filled</td>
+                            <td>Filled Questionnaire Number</td>
                             <td><jsp:getProperty name="userinfo" property="filledNumber" /></td>
                         </tr>
                     </tbody>
