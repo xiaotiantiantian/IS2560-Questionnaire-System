@@ -67,9 +67,10 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!--put the name on the navigation bar-->
                         <br>
-                        <%                            if (request.getSession().getAttribute("userName") != null) {
+                        <%
+                            if (request.getSession().getAttribute("userName") != null) {
                                 String username = (String) session.getAttribute("userName");
-                                out.print("<a href='#'>" + username + "</a>");
+                                out.print("<a href='ShowUserInfo.jsp'>" + username + "</a>");
                                 out.print("&nbsp;&nbsp;|&nbsp;&nbsp;");
                                 out.print("<a href='LogOut'>Log Out</a>");
                             }
@@ -118,8 +119,13 @@
                     countQuestion++;
                     var newDiv = " <div class=\"form-group\">"
                             + " <label for=\"questionnaireQ" + countQuestion + "\"><h3>Question " + countQuestion + "</h3></label>"
-                            + "<input name=\"questionnaireQ" + countQuestion + "\" id=\"questioinnaireQ" + countQuestion + "\" type=\"text\" class=\"form-control\" placeholder=\"input text here\" maxlength=\"254\" required>"
-                            + "<p class=\"row\">"
+                            + "<input name=\"questionnaireQ" + countQuestion + "\" id=\"questioinnaireQ" + countQuestion + "\" type=\"text\" class=\"form-control\" placeholder=\"input text here\" maxlength=\"254\" required>";
+
+                    newDir += "";
+
+
+
+                    newDir += "<p class=\"row\">"
                             + "<input type=\"radio\" id=\"question-type-single" + countQuestion + "\" name=\"question-type" + countQuestion + "\" value=\"S\"/>"
                             + "<label for=\"question-type-single" + countQuestion + "\">Single Selection Question</label>"
                             + "<input type=\"radio\" id=\"question-type-multiple" + countQuestion + "\" name=\"question-type" + countQuestion + "\" value=\"M\"/>"

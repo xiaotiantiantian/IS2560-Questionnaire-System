@@ -61,7 +61,7 @@
                     <br>
                     <%                            if (request.getSession().getAttribute("userName") != null) {
                             String username = (String) session.getAttribute("userName");
-                            out.print("<a href='#'>" + username + "</a>");
+                            out.print("<a href='ShowUserInfo.jsp'>" + username + "</a>");
                             out.print("&nbsp;&nbsp;|&nbsp;&nbsp;");
                             out.print("<a href='LogOut'>Log Out</a>");
                         }
