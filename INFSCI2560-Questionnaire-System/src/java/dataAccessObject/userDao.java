@@ -170,5 +170,11 @@ public class userDao {
         ps1.executeUpdate();
         return 0;
     }
+    public int changeuserpic(int userid, String filename)throws SQLException{
+        sql = "update infsci2560.userinformation set UserPicture = '" + filename + "' where UserID = '"+ userid + "'";
+        PreparedStatement ps1 = connection.prepareStatement(sql);
+        ps1.executeUpdate();
+        return 0;
+    }
 }
 

@@ -43,7 +43,7 @@
                         <li><a href="showCreatedQuestionnaire.jsp">Show My Questionnaire</a></li>
                         <li><a href="Search.jsp">Search Questionnaire</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="ShowUserInfo.jsp" class="dropdown-toggle" data-toggle="dropdown">
                                 Personal Information <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
@@ -51,6 +51,7 @@
                                 <li class="divider"></li>
                                 <li class="active"><a href="changepsw.jsp">Change Password</a></li>
                                 <li><a href="changeuserinfo.jsp">Change User Info</a></li>
+                                <li><a href="upload.jsp">Change User Photo</a></li>
                             </ul>
                         </li>
                     </ul>

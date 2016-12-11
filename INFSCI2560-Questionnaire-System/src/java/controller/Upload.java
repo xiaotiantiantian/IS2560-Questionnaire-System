@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dataAccessObject.userDao;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -26,7 +27,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author qssheep
  */
-@WebServlet(name = "Upload", urlPatterns = {"/Upload"})
+//@WebServlet(name = "Upload", urlPatterns = {"/Upload"})
 public class Upload extends HttpServlet {
 
     /**
@@ -39,7 +40,7 @@ public class Upload extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private static final long serialVersionUID = 1L;
-    private static final String DATA_DIRECTORY = "data";
+    private static final String DATA_DIRECTORY = "image";
     private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
     private static final int MAX_REQUEST_SIZE = 1024 * 1024;
  
@@ -79,7 +80,7 @@ public class Upload extends HttpServlet {
 
         // Set overall request size constraint
         upload.setSizeMax(MAX_REQUEST_SIZE);
-
+        String fileName = "";
         try {
             // Parse the request
             List items = upload.parseRequest(request);
@@ -88,7 +89,7 @@ public class Upload extends HttpServlet {
                 FileItem item = (FileItem) iter.next();
 
                 if (!item.isFormField()) {
-                    String fileName = (String)session.getId() + new File(item.getName()).getName();
+                    fileName = (String)session.getId() + new File(item.getName()).getName();
                     String filePath = uploadFolder + File.separator + fileName;
                     File uploadedFile = new File(filePath);
                     System.out.println(filePath);
@@ -96,11 +97,12 @@ public class Upload extends HttpServlet {
                     item.write(uploadedFile);
                 }
             }
-
+            userDao ud = new userDao();
+            ud.changeuserpic((int)session.getAttribute("userID"), fileName);
             // displays done.jsp page after upload finished
             getServletContext().getRequestDispatcher("/done.jsp").forward(
                     request, response);
-
+            
         } catch (FileUploadException ex) {
             throw new ServletException(ex);
         } catch (Exception ex) {

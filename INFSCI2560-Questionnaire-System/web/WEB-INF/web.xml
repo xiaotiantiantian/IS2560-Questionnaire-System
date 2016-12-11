@@ -90,6 +90,14 @@
         <servlet-class>controller.changeuserinfo</servlet-class>
     </servlet>
     <servlet-mapping>
+        <servlet-name>Upload</servlet-name>
+        <url-pattern>/Upload</url-pattern>
+    </servlet-mapping>
+        <servlet>
+        <servlet-name>Upload</servlet-name>
+        <servlet-class>controller.Upload</servlet-class>
+    </servlet>
+    <servlet-mapping>
         <servlet-name>changeuserinfo</servlet-name>
         <url-pattern>/changeuserinfo</url-pattern>
     </servlet-mapping>
